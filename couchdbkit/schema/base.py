@@ -153,6 +153,9 @@ class DocumentSchema(object):
         if self._doc.get('doc_type') is None:
             doc_type = getattr(self, '_doc_type', self.__class__.__name__)
             self._doc['doc_type'] = doc_type
+
+        if getattr(self, '_attachments'):
+            self._doc['_attachments'] = self['_attachments']
         return self._doc
 
     #TODO: add a way to maintain custom dynamic properties
